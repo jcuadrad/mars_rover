@@ -12,6 +12,18 @@ function reset(rover) {
   console.log("Position is now: " + rover.position);
 }
 
+function grid(rover) {
+  if (rover.position[0] > 10) {
+  rover.position[0] = -10;
+} else if (rover.position[1] > 10) {
+  rover.position[1] = -10;
+} else if (rover.position[0] < -10) {
+  rover.position[0] = 10;
+}  else if (helena.position[1] < -10) {
+  rover.position[1] = 10;
+  }
+}
+
 function turnLeft(rover) {
   var left = rover.direction;
   switch (left) {
@@ -23,6 +35,10 @@ function turnLeft(rover) {
       break;
     case 'S':
       rover.direction = 'E';
+      break;
+    case 'E':
+      rover.direction = 'N';
+      break;
   }
 }
 
@@ -37,6 +53,10 @@ function turnRight(rover) {
       break;
     case 'S':
       rover.direction = 'W';
+      break;
+    case 'W':
+      rover.direction = 'N';
+      break;
   }
 }
 
@@ -55,15 +75,7 @@ function goForward(rover) {
       rover.position[1]--;
       break;
   }
-  if (rover.position[0] > 9) {
-    rover.position[0] = -9;
-  } else if (rover.position[1] > 9) {
-    rover.position[1] = -9;
-  } else if (rover.position[0] < -9) {
-    rover.position[0] = 9;
-  }  else if (helena.position[1] < -9) {
-    rover.position[1] = 9;
-  }
+  grid(rover);
 }
 
 function goBack(rover) {
@@ -81,15 +93,7 @@ function goBack(rover) {
       rover.position[1]++;
       break;
   }
-  if (rover.position[0] > 9) {
-    rover.position[0] = -9;
-  } else if (rover.position[1] > 9) {
-    rover.position[1] = -9;
-  } else if (rover.position[0] < -9) {
-    rover.position[0] = 9;
-  }  else if (helena.position[1] < -9) {
-    rover.position[1] = 9;
-  }
+  grid(rover);
 }
 
 function instructionSet(rover, command) {
@@ -115,4 +119,4 @@ function instructionSet(rover, command) {
   }
 }
 
-instructionSet(helena, "fffrffflbbb");
+instructionSet(helena, "rfffffffffffffffffffff");
